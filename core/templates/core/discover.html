@@ -1,0 +1,34 @@
+```html
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Keşfet/Trendler{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Keşfet</h1>
+    <h5>Trend Gönderiler</h5>
+    <div class="row">
+        {% for post in trend_posts %}
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-lg border-0 rounded-3">
+                    <div class="card-body">
+                        <h6>{{ post.user.username }}</h6>
+                        <p>{{ post.content|truncatechars:100 }}</p>
+                        <a href="{% url 'core:post_detail' post.id %}" class="btn btn-outline-primary btn-sm">Detay</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Henüz trend yok.</p>
+        {% endfor %}
+    </div>
+    <h5>Trend Etiketler</h5>
+    <div class="d-flex flex-wrap gap-2">
+        {% for hashtag in trends %}
+            <a href="{% url 'core:hashtag' hashtag %}" class="badge bg-info text-dark">#{{ hashtag }}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+```

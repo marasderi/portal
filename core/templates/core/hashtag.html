@@ -1,0 +1,27 @@
+```html
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}#{{ hashtag }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>#{{ hashtag }}</h1>
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-md-6 mb-3">
+                <div class="card shadow-lg border-0 rounded-3">
+                    <div class="card-body">
+                        <h6>{{ post.user.username }}</h6>
+                        <p>{{ post.content }}</p>
+                        <a href="{% url 'core:post_detail' post.id %}" class="btn btn-outline-primary btn-sm">Detay</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Bu etikete ait gönderi yok.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+```

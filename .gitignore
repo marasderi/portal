@@ -1,0 +1,21 @@
+# .gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.env
+*.sqlite3
+*.db
+/staticfiles/
+/media/
+*.log
+*.pid
+*.seed
+*.suo
+*.pdb
+*.idb
+*.DS_Store
+Thumbs.db

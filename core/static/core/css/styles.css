@@ -73,4 +73,24 @@ body {
     border-radius: 12px;
     padding: 6px 12px;
 }
+
+/* Yeni eklenen stiller */
+.like-btn, .dislike-btn {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.75rem;
+}
+
+.like-icon, .dislike-icon {
+    margin-right: 0.25rem;
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+.like-icon {
+    color: var(--success);
+}
+
+.dislike-icon {
+    color: var(--danger);
+}
 ```

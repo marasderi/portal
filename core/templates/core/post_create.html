@@ -1,0 +1,32 @@
+```html
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Gönderi Oluştur/Düzenle{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{% if post %}Gönderi Düzenle{% else %}Yeni Gönderi Oluştur{% endif %}</h1>
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body">
+            <form method="post" action="{% if post %}{% url 'core:post_edit' post.id %}{% else %}{% url 'core:post_create' %}{% endif %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="content" class="form-label">İçerik</label>
+                    <textarea class="form-control" id="content" name="content" rows="5">{{ post.content }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="link" class="form-label">Link</label>
+                    <input type="url" class="form-control" id="link" name="link" value="{{ post.link }}">
+                </div>
+                <div class="mb-3">
+                    <label for="hashtags" class="form-label">Etiketler</label>
+                    <input type="text" class="form-control" id="hashtags" name="hashtags" value="{{ post.hashtags }}" placeholder="#etiket1 #etiket2">
+                </div>
+                <button type="submit" class="btn btn-primary">{% if post %}Güncelle{% else %}Oluştur{% endif %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+```

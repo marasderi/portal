@@ -1,38 +1,34 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from .models import Post, Profile, Follow, Message, SpecialContent, Ad
+```python
+from django.shortcuts import render
 from django.contrib.auth.models import User
+from .models import Post
+from django.db.models import Q
 
-def home(request):
-    posts = Post.objects.filter(status='published').order_by('-created_at')
-    return render(request, 'core/home.html', {'posts': posts})
+def search(request):
+    query = request.GET.get('q', '')
+    results = []
 
-@login_required
-def profile(request):
-    return render(request, 'core/profile.html')
+    if query:
+        # Kullanıcı arama
+        users = User.objects.filter(username__icontains=query)
+        for user in users:
+            results.append({'type': 'user', 'id': user.id, 'username': user.username})
 
-def user_profile(request, user_id):
-    profile_user = get_object_or_404(User, id=user_id)
-    is_following = Follow.objects.filter(follower=request.user, followed=profile_user).exists()
-    return render(request, 'core/user_profile.html', {'profile_user': profile_user, 'is_following': is_following})
+        # Gönderi arama (içerik ve hashtag’ler)
+        posts = Post.objects.filter(
+            Q(content__icontains=query) | Q(hashtags__icontains=query)
+        ).distinct()
+        for post in posts:
+            results.append({'type': 'post', 'id': post.id, 'content': post.content})
 
-@login_required
-def post_detail(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    return render(request, 'core/post_detail.html', {'post': post})
+        # Etiket arama (sadece hashtag’leri ayırarak)
+        hashtags = set()
+        for post in Post.objects.all():
+            if query.lower() in post.hashtags.lower():
+                hashtags.update(post.hashtags.split())
+        for hashtag in hashtags:
+            if query.lower() in hashtag.lower():
+                results.append({'type': 'hashtag', 'hashtag': hashtag})
 
-@login_required
-def follow(request, user_id):
-    if request.method == 'POST':
-        followed = get_object_or_404(User, id=user_id)
-        follow, created = Follow.objects.get_or_create(follower=request.user, followed=followed)
-        if not created:
-            follow.delete()
-        return HttpResponseRedirect(reverse('core:user_profile', args=[user_id]))
-    return redirect('core:home')
-
-# Diğer görünümler (arama, mesajlar, vb.) benzer şekilde tanımlanır.
+    return render(request, 'core/search.html', {'query': query, 'results': results})
+```

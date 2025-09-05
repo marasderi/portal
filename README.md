@@ -84,18 +84,23 @@ django-crispy-forms==2.0
 
 
 Tam bağımlılık listesi için requirements.txt dosyasını inceleyin.
+
+
 Testler
 Projeyi test etmek için aşağıdaki komutu kullanabilirsiniz:
 python manage.py test
+
 
 Ekran Görüntüleri
 
 Anasayfa: Kullanıcıların gönderileri görüntülediği ana sayfa.
 Admin Paneli: Yönetim ve denetim araçları.
 
+
 Not: Ekran görüntüleri için screenshots/ dizinine ilgili dosyaları ekleyin.
 Katkıda Bulunma
 Katkılarınızı memnuniyetle karşılıyoruz! Lütfen aşağıdaki adımları takip edin:
+
 
 Depoyu fork edin.
 Yeni bir branch oluşturun: git checkout -b feature/your-feature-name
@@ -103,8 +108,13 @@ Değişikliklerinizi yapın ve commit edin: git commit -m "Açıklayıcı mesaj"
 Değişikliklerinizi push edin: git push origin feature/your-feature-name
 Bir pull request gönderin ve inceleme için bekleyin.
 
+
 Kod stili için PEP 8 kurallarına uyun. Pull request'lerde net bir açıklama ve test sonuçları ekleyin.
+
+
 Destek
 Sorularınız veya hatalar için lütfen bir GitHub Issue açın veya [marasderi@gmail.com] adresine yazın.
+
+
 Lisans
 Bu proje MIT Lisansı altında lisanslanmıştır.

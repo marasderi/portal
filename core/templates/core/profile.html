@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Profil{% endblock %}
+{% block content %}
+<h1>Profil</h1>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ user.username }}</h5>
+        <p><strong>Biyografi:</strong> {{ user.profile.bio }}</p>
+        <p><strong>Üyelik Türü:</strong> {{ user.profile.user_type }}</p>
+        <a href="{% url 'core:settings' %}" class="btn btn-primary">Profili Düzenle</a>
+    </div>
+</div>
+{% endblock %}

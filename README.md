@@ -105,6 +105,6 @@ Bir pull request gönderin ve inceleme için bekleyin.
 
 Kod stili için PEP 8 kurallarına uyun. Pull request'lerde net bir açıklama ve test sonuçları ekleyin.
 Destek
-Sorularınız veya hatalar için lütfen bir GitHub Issue açın veya [email@example.com] adresine yazın.
+Sorularınız veya hatalar için lütfen bir GitHub Issue açın veya [marasderi@gmail.com] adresine yazın.
 Lisans
 Bu proje MIT Lisansı altında lisanslanmıştır.

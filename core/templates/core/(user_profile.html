@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ profile_user.username }} Profili{% endblock %}
+{% block content %}
+<h1>{{ profile_user.username }}</h1>
+<div class="card">
+    <div class="card-body">
+        <p><strong>Biyografi:</strong> {{ profile_user.profile.bio }}</p>
+        <p><strong>Üyelik Türü:</strong> {{ profile_user.profile.user_type }}</p>
+        {% if user != profile_user %}
+        <form method="post" action="{% url 'core:follow' profile_user.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">{% if is_following %}Takibi Bırak{% else %}Takip Et{% endif %}</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

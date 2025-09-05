@@ -1,1 +1,26 @@
-django==4.2.15 psycopg2-binary==2.9.9 django-redis==5.4.0 python-decouple==3.8 gunicorn==22.0.0 django-ratelimit==4.1.0 coverage==7.6.1 sentry-sdk==2.14.0 drf-yasg==1.21.7
+# Web framework
+django==4.2.15
+
+# PostgreSQL adapter
+psycopg2-binary==2.9.9
+
+# Redis cache backend
+django-redis==5.4.0
+
+# Environment variables
+python-decouple==3.8
+
+# WSGI server
+gunicorn==22.0.0
+
+# Rate limiting
+django-ratelimit==4.1.0
+
+# Test coverage
+coverage==7.6.1
+
+# Error tracking
+sentry-sdk==2.14.0
+
+# API documentation
+drf-yasg==1.21.7

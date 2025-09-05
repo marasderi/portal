@@ -1,3 +1,4 @@
+```python
 from django.urls import path
 from . import views
 
@@ -9,5 +10,7 @@ urlpatterns = [
     path('user/<int:user_id>/', views.user_profile, name='user_profile'),
     path('post/<int:post_id>/', views.post_detail, name='post_detail'),
     path('follow/<int:user_id>/', views.follow, name='follow'),
-    # Diğer URL'ler (arama, mesajlar, vb.) eklenebilir.
+    path('search/', views.search, name='search'),
+    # Diğer URL'ler burada kalabilir
 ]
+```

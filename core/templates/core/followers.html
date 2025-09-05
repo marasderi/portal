@@ -1,0 +1,40 @@
+```html
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Takip/Takipçiler{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Takip Ettiklerim/Takipçilerim</h1>
+    <ul class="nav nav-tabs" id="followersTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="following-tab" data-bs-toggle="tab" data-bs-target="#following" type="button" role="tab">Takip Ettiklerim</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="followers-tab" data-bs-toggle="tab" data-bs-target="#followers" type="button" role="tab">Takipçilerim</button>
+        </li>
+    </ul>
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="following" role="tabpanel">
+            <div class="list-group">
+                {% for user in following %}
+                    <a href="{% url 'core:user_profile' user.id %}" class="list-group-item list-group-item-action shadow-sm rounded-3 mb-2">{{ user.username }}</a>
+                {% empty %}
+                    <p>Henüz takip ettiğiniz yok.</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="followers" role="tabpanel">
+            <div class="list-group">
+                {% for user in followers %}
+                    <a href="{% url 'core:user_profile' user.id %}" class="list-group-item list-group-item-action shadow-sm rounded-3 mb-2">{{ user.username }}</a>
+                {% empty %}
+                    <p>Henüz takipçiniz yok.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+```

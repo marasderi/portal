@@ -1,3 +1,4 @@
+```python
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,10 +47,14 @@ STATICFILES_DIRS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'portal_db',
-        'USER': 'your_username',
-        'PASSWORD': 'your_password',
+        'NAME': 'dbportal',
+        'USER': 'portal1',
+        'PASSWORD': 'portal123456789',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+```

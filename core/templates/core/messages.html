@@ -1,0 +1,49 @@
+```html
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Mesajlar{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Mesajlar</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Sohbet Listesi</h5>
+            <div class="list-group">
+                {% for chat in chats %}
+                    <a href="{% url 'core:messages' chat.user.id %}" class="list-group-item list-group-item-action shadow-sm rounded-3 mb-2">
+                        {{ chat.user.username }}
+                        <small class="text-muted">{{ chat.last_message }}</small>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h5>Bireysel Sohbet</h5>
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-body" style="max-height: 400px; overflow-y: scroll;">
+                    {% for message in messages %}
+                        <div class="mb-2 {% if message.sender == user %}text-end{% endif %}">
+                            <div class="d-inline-block p-2 rounded-3 {% if message.sender == user %}bg-primary text-white{% else %}bg-light{% endif %}">
+                                {{ message.content }}
+                            </div>
+                            <small class="text-muted">{{ message.created_at|date:"H:i" }}</small>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="card-footer">
+                    <form method="post" action="{% url 'core:message_send' receiver.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" name="content" class="form-control" placeholder="Mesaj yazın...">
+                            <button type="submit" class="btn btn-primary">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+```

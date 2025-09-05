@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Ana Sayfa{% endblock %}
+{% block content %}
+<h1>Ana Akış</h1>
+<div class="row">
+    {% for post in posts %}
+    <div class="col-md-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.user.username }}</h5>
+                <p class="card-text">{{ post.content }}</p>
+                {% if post.link %}
+                <a href="{{ post.link }}" class="card-link">Link</a>
+                {% endif %}
+                <p class="text-muted">{{ post.created_at }}</p>
+                <a href="{% url 'core:post_detail' post.id %}" class="btn btn-primary">Detay</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>Henüz gönderi yok.</p>
+    {% endfor %}
+</div>
+{% endblock %}

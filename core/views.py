@@ -138,4 +138,28 @@ def password_reset(request):
 
 def about(request):
     return render(request, 'core/about.html')
+
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.user not in post.liked_by.all():
+        post.liked_by.add(request.user)
+        post.likes_count += 1
+    else:
+        post.liked_by.remove(request.user)
+        post.likes_count -= 1
+    post.save()
+    return redirect(reverse('core:post_detail', args=[post_id]))
+
+@login_required
+def dislike_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.user not in post.disliked_by.all():
+        post.disliked_by.add(request.user)
+        post.likes_count -= 1
+    else:
+        post.disliked_by.remove(request.user)
+        post.likes_count += 1
+    post.save()
+    return redirect(reverse('core:post_detail', args=[post_id]))
 ```

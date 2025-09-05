@@ -1,0 +1,42 @@
+```html
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Arama{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Arama</h1>
+    <form method="get" action="{% url 'core:search' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Arama yapın (kullanıcı, etiket veya içerik)" value="{{ query }}" required>
+            <button type="submit" class="btn btn-primary">Ara</button>
+        </div>
+    </form>
+
+    {% if query %}
+        <h3>Sonuçlar: "{{ query }}"</h3>
+        {% if results %}
+            <div class="list-group">
+                {% for result in results %}
+                    {% if result.type == 'user' %}
+                        <a href="{% url 'core:user_profile' result.id %}" class="list-group-item list-group-item-action">
+                            <i class="bi bi-person-fill"></i> {{ result.username }} (Kullanıcı)
+                        </a>
+                    {% elif result.type == 'post' %}
+                        <a href="{% url 'core:post_detail' result.id %}" class="list-group-item list-group-item-action">
+                            <i class="bi bi-file-text-fill"></i> {{ result.content|truncatechars:50 }} (Gönderi)
+                        </a>
+                    {% elif result.type == 'hashtag' %}
+                        <a href="{% url 'core:hashtag' result.hashtag %}" class="list-group-item list-group-item-action">
+                            <i class="bi bi-hash"></i> #{{ result.hashtag }} (Etiket)
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Aramanızla eşleşen bir sonuç bulunamadı.</p>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

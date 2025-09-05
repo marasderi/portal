@@ -9,7 +9,7 @@
 - İstatistikler: Kullanıcı ve gönderi analitikleri.
 
 ## Kurulum
-1. Depoyu klonlayın: `git clone https://github.com/kullaniciadi/portal.git`
+1. Depoyu klonlayın: `git clone https://github.com/marasderi/portal.git`
 2. Sanal ortam oluşturun: `python -m venv venv`
 3. Sanal ortamı etkinleştirin: `venv\Scripts\activate` (Windows) veya `source venv/bin/activate` (Linux/Mac)
 4. Gereksinimleri yükleyin: `pip install -r requirements.txt`

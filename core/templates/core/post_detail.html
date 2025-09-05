@@ -18,11 +18,18 @@
             {% endif %}
             {% if post.hashtags %}
                 <div class="mb-3">
-                    <span class="badge bg-secondary me-1" for each hashtag in post.hashtags.split()">#{{ hashtag }}</span>
+                    {% for hashtag in post.hashtags.split %}
+                        <span class="badge bg-secondary me-1">#{{ hashtag }}</span>
+                    {% endfor %}
                 </div>
             {% endif %}
             <div class="d-flex gap-2 mb-3">
-                <button class="btn btn-outline-primary btn-sm"><i class="bi bi-heart"></i> Beğen ({{ post.likes.count }})</button>
+                <button class="btn btn-outline-primary btn-sm like-btn" data-post-id="{{ post.id }}">
+                    <span class="like-icon">♥</span> Beğen ({{ post.likes_count }})
+                </button>
+                <button class="btn btn-outline-danger btn-sm dislike-btn" data-post-id="{{ post.id }}">
+                    <span class="dislike-icon">-</span> Beğenme
+                </button>
                 <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-chat-left-text"></i> Yorum Yap</button>
                 <button class="btn btn-outline-info btn-sm"><i class="bi bi-share"></i> Paylaş</button>
             </div>

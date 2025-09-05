@@ -1,2 +1,1 @@
-Django>=4.2
-psycopg2-binary>=2.9
+django==4.2.15 psycopg2-binary==2.9.9 django-redis==5.4.0 python-decouple==3.8 gunicorn==22.0.0 django-ratelimit==4.1.0 coverage==7.6.1 sentry-sdk==2.14.0 drf-yasg==1.21.7

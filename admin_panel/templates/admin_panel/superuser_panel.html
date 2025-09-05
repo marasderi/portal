@@ -1,0 +1,28 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="superuser-panel" class="mb-5">
+    <h2 class="mb-3">Süper Üye Paneli</h2>
+    <div class="card">
+        <div class="card-header">Premium İçerik Oluşturma</div>
+        <div class="card-body">
+            <form method="post" action="{% url 'admin_panel:special_content_create' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="contentType" class="form-label">İçerik Türü</label>
+                    <select class="form-select" id="contentType" name="content_type">
+                        <option value="poll">Anket</option>
+                        <option value="story">Hikaye</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">İçerik</label>
+                    <textarea class="form-control" id="content" name="content" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Oluştur</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

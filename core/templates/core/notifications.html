@@ -1,0 +1,25 @@
+```html
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Bildirimler{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Bildirimler</h1>
+    <div class="list-group">
+        {% for notification in notifications %}
+            <a href="{{ notification.link }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center shadow-sm rounded-3 mb-2">
+                <div>
+                    <i class="bi {{ notification.icon }} me-2 text-primary"></i>
+                    {{ notification.message }}
+                </div>
+                <small class="text-muted">{{ notification.created_at|date:"d M Y H:i" }}</small>
+            </a>
+        {% empty %}
+            <p class="text-muted">Henüz bildirim yok.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+```

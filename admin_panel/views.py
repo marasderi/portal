@@ -12,8 +12,20 @@ def home(request):
     return render(request, 'core/home.html', {'posts': posts})
 
 @login_required
-def profile(request):
-    return render(request, 'core/profile.html')
+@user_passes_test(lambda u: u.is_staff)
+def moderator_panel(request):
+    posts = Post.objects.all()
+    return render(request, 'admin_panel/moderator_panel.html', {'posts': posts})
+
+@login_required
+@user_passes_test(lambda u: u.profile.user_type == 'super')
+def superuser_panel(request):
+    if request.method == 'POST':
+        content_type = request.POST.get('content_type')
+        content = request.POST.get('content')
+        SpecialContent.objects.create(user=request.user, content_type=content_type, content=content)
+        return HttpResponseRedirect(reverse('admin_panel:superuser_panel'))
+    return render(request, 'admin_panel/superuser_panel.html')
 
 def user_profile(request, user_id):
     profile_user = get_object_or_404(User, id=user_id)

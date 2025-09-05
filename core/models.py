@@ -16,6 +16,8 @@ class Post(models.Model):
     hashtags = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     likes_count = models.IntegerField(default=0)
+    liked_by = models.ManyToManyField(User, related_name='liked_posts', blank=True)
+    disliked_by = models.ManyToManyField(User, related_name='disliked_posts', blank=True)
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')

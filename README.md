@@ -91,15 +91,16 @@ Projeyi test etmek için aşağıdaki komutu kullanabilirsiniz:
 python manage.py test
 
 
-Ekran Görüntüleri
+Ekran Görüntüleri : sunucuda çalıştırdığımızda ekran görüntüleri atılacak
+
 
 Anasayfa: Kullanıcıların gönderileri görüntülediği ana sayfa.
+
+
 Admin Paneli: Yönetim ve denetim araçları.
 
 
-Not: Ekran görüntüleri için screenshots/ dizinine ilgili dosyaları ekleyin.
-Katkıda Bulunma
-Katkılarınızı memnuniyetle karşılıyoruz! Lütfen aşağıdaki adımları takip edin:
+Katkıda Bulunma :  Katkılarınızı memnuniyetle karşılıyoruz! Lütfen aşağıdaki adımları takip edin:
 
 
 Depoyu fork edin.
@@ -112,8 +113,7 @@ Bir pull request gönderin ve inceleme için bekleyin.
 Kod stili için PEP 8 kurallarına uyun. Pull request'lerde net bir açıklama ve test sonuçları ekleyin.
 
 
-Destek
-Sorularınız veya hatalar için lütfen bir GitHub Issue açın veya [marasderi@gmail.com] adresine yazın.
+Destek  :  Sorularınız veya hatalar için lütfen bir GitHub Issue açın veya [marasderi@gmail.com] adresine yazın.
 
 
 Lisans

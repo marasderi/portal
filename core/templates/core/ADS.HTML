@@ -1,0 +1,28 @@
+```html
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Reklam Panelleri{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Reklamlar</h1>
+    <div class="row">
+        {% for ad in ads %}
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-lg border-0 rounded-3">
+                    <div class="card-body text-center">
+                        <h5>{{ ad.title }}</h5>
+                        <p>Alan: {{ ad.placement|title }}</p>
+                        <p>Durum: <span class="badge bg-{% if ad.status == 'active' %}success{% else %}warning{% endif %}">{{ ad.status|title }}</span></p>
+                        <p>Üyelik Türü: {{ ad.user_type|title }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Henüz reklam yok.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+```
